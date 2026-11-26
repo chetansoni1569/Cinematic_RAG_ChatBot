@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>NEXUS AI — Your knowledge, one conversation away</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css"></head><body id="top">
+<nav id="nv"><b>NEXUS AI</b><div class="lk"><a href="#top">Overview</a><a href="#story">How It Works</a><a href="#chat" onclick="openKB()">Knowledge Base</a><a href="#tech">Technology</a><a href="#chat">Chat</a></div><a class="btn" href="#chat">Start Chatting</a></nav>
+
+<section id="story"><div class="pin"><canvas id="cv"></canvas><div class="bar" id="bar"></div>
+<div class="pn hero" id="p0"><h1>AI that understands your knowledge.</h1><p class="sub">Ask anything. Get answers grounded in your documents.</p><p>Transform your documents into an intelligent knowledge system that retrieves, understands, and responds with context.</p></div>
+<div class="pn L" id="p1"><h2>From documents to intelligence.</h2><p>Upload your documents and transform them into searchable knowledge.</p><p>Intelligent text extraction and cleaning prepare your content for accurate retrieval.</p><p>Every document becomes part of your AI’s knowledge base.</p></div>
+<div class="pn R" id="p2"><h2>The right knowledge. At the right moment.</h2><ul><li>Recursive chunking preserves meaningful document structure.</li><li>Semantic embeddings understand meaning—not just keywords.</li><li>Vector search retrieves the most relevant information.</li><li>Relevant context is selected before every answer.</li></ul></div>
+<div class="pn L" id="p3"><h2>Answers backed by knowledge.</h2><ul><li>Every question triggers intelligent retrieval from your knowledge base.</li><li>Relevant context is provided to the AI before response generation.</li><li>Responses stay grounded in the information available to the system.</li><li>When information is missing, the AI tells you instead of inventing an answer.</li></ul></div>
+<div class="pn cta" id="p4"><h2>Your knowledge. One conversation away.</h2><p>Upload your documents. Ask questions. Discover answers hidden in your information.</p><div class="row"><a class="btn" href="#chat">Start a Conversation</a><a class="btn o" href="#chat" onclick="openKB()">Upload Your Documents</a></div><p style="font-size:13px;opacity:.6">Built for research, learning, documents, and knowledge discovery.</p></div>
+<div class="stage" id="stg"></div></div></section>
+
+<section id="tech"><h2>A real retrieval pipeline. Nothing staged.</h2><div class="grid">
+<div class="card"><i>01</i><b>Extract &amp; clean</b><small>PDF, DOCX, TXT and Markdown parsed in your browser; whitespace and artefacts normalised.</small></div>
+<div class="card"><i>02</i><b>Recursive chunking</b><small>Paragraph → line → sentence → word splits with configurable overlap.</small></div>
+<div class="card"><i>03</i><b>Vector index</b><small>Local sparse TF-IDF vectors with cosine search. Dense embedding API: <em>not configured</em>.</small></div>
+<div class="card"><i>04</i><b>Grounded answers</b><small>Extractive answers with citations. LLM generation: <em>not configured</em>, so nothing is invented.</small></div></div></section>
+
+<section id="chat">
+<aside id="sb"><div class="sh"><span>NEXUS AI</span><button class="ic" onclick="tg()" title="Collapse">⟨</button></div>
+<button class="nb" onclick="newChat()">+ New Chat</button>
+<div class="lb">Recent</div><div id="cl"></div>
+<div class="lb" id="kb">Knowledge Base</div>
+<label class="dz" id="dz">Drop PDF, DOCX, TXT or MD here<br><button class="btn" style="margin-top:10px;padding:6px 14px;font-size:13px" onclick="fi.click()">Browse files</button></label>
+<input type="file" id="fi" multiple accept=".pdf,.docx,.txt,.md,.csv,.json" hidden>
+<div id="dl" style="display:flex;flex-direction:column;gap:8px"></div></aside>
+<div id="main"><div class="top"><button class="ic" onclick="tg()" title="Sidebar">☰</button><span id="ct" style="color:#fff">New conversation</span><span class="sp"></span><span class="st" id="rs">No documents</span><button class="ic" onclick="clr()">Clear</button><button class="ic" onclick="set.style.display=set.style.display=='block'?'none':'block'">Settings</button></div>
+<div id="set"><b style="color:#fff">Retrieval settings</b><label>Chunk size <span id="v1">600</span></label><input type="range" id="cs" min="200" max="1200" step="50" value="600"><label>Overlap <span id="v2">100</span></label><input type="range" id="co" min="0" max="300" step="10" value="100"><label>Top-K <span id="v3">4</span></label><input type="range" id="tk" min="1" max="8" value="4"><p>Chunk settings apply to documents uploaded afterwards. LLM and dense-embedding APIs are not configured; wire them in <code>generate()</code> and <code>embed()</code>. Data lives in memory for this session.</p></div>
+<div id="feed"></div>
+<div class="in"><div class="ib"><textarea id="q" rows="1" placeholder="Ask about your documents…"></textarea><button class="btn" onclick="ask()">Send</button></div><div class="nt">Answers are extractive and cite your documents. If nothing relevant is found, it says so.</div></div></div>
+</section>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/mammoth/1.6.0/mammoth.browser.min.js"></script>
+<script src="js/story.js"></script>
+<script src="js/rag.js"></script>
+<script src="js/chat.js"></script></body></html>

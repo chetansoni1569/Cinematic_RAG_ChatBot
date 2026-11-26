@@ -1,0 +1,7 @@
+{
+  "name": "nexus-ai",
+  "version": "1.0.0",
+  "description": "Cinematic landing page and in-browser RAG chat for document-grounded answers",
+  "scripts": { "start": "npx serve ." },
+  "license": "MIT"
+}
